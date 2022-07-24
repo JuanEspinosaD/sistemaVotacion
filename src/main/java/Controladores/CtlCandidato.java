@@ -1,6 +1,7 @@
 package Controladores;
 import Clases.ClsCandidato;
 import Modelos.MdlCandidato;
+import java.util.LinkedList;
 
 /**
  *
@@ -13,6 +14,13 @@ public class CtlCandidato {
     public CtlCandidato() {
 
         this.modeloCandidato = new MdlCandidato();
+    }
+    
+    
+     public LinkedList<ClsCandidato> obtenerCandidatos(){
+         LinkedList<ClsCandidato> listaCandidatos=this.modeloCandidato.obtenerCandidatos();
+        
+        return listaCandidatos;
     }
 
     public Boolean agregarCandidato(ClsCandidato candidato) {

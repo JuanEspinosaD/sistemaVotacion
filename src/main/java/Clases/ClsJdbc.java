@@ -15,7 +15,7 @@ public class ClsJdbc {
     String bd = "bd_elecciones";
     String url = "jdbc:mysql://localhost:3306/" + this.bd;
 
-    Connection conexion;
+    public Connection conexion;
 
     public void CrearConexion() {
         

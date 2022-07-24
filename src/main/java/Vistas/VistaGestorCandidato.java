@@ -1,16 +1,17 @@
-
 package Vistas;
 
 import Clases.ClsCandidato;
 import Controladores.CtlCandidato;
+import java.util.LinkedList;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Juan Espinosa
  */
 public class VistaGestorCandidato extends javax.swing.JFrame {
-    
+
     JFrame menuPrincipal;
     CtlCandidato controladorCandidato;
 
@@ -19,8 +20,9 @@ public class VistaGestorCandidato extends javax.swing.JFrame {
      */
     public VistaGestorCandidato(JFrame menuPrincipal) {
         initComponents();
-        this.menuPrincipal= menuPrincipal;
-        this.controladorCandidato=new CtlCandidato();
+        this.menuPrincipal = menuPrincipal;
+        this.controladorCandidato = new CtlCandidato();
+        this.obtenerCandidatos();
     }
 
     /**
@@ -40,6 +42,8 @@ public class VistaGestorCandidato extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         campoNombre = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaCandidatos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         botonVolver = new javax.swing.JButton();
 
@@ -91,15 +95,34 @@ public class VistaGestorCandidato extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Fomulario", jPanel1);
 
+        tablaCandidatos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Candidato", "Partido", "Campaña"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaCandidatos);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 292, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Listado", jPanel2);
@@ -150,17 +173,36 @@ public class VistaGestorCandidato extends javax.swing.JFrame {
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        String numeroDocumento= this.campoDocumento.getText();
-        String nombre=this.campoNombre.getText();
-        
-        ClsCandidato candidato=new ClsCandidato(nombre, numeroDocumento, nombre, nombre, nombre, nombre, nombre, nombre, nombre);
-        boolean respuesta=this.controladorCandidato.agregarCandidato(candidato);
+        String numeroDocumento = this.campoDocumento.getText();
+        String nombre = this.campoNombre.getText();
+
+        ClsCandidato candidato = new ClsCandidato(nombre, numeroDocumento, nombre, nombre, nombre, nombre, nombre, nombre, nombre);
+        boolean respuesta = this.controladorCandidato.agregarCandidato(candidato);
     }//GEN-LAST:event_botonAgregarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    public void obtenerCandidatos() {
+
+        LinkedList<ClsCandidato> listaCandidatos = this.controladorCandidato.obtenerCandidatos();
+        this.actualizarTabla(listaCandidatos);
+    }
+
+    private void actualizarTabla(LinkedList<ClsCandidato> candidatos) {
+
+        DefaultTableModel modelo = (DefaultTableModel) this.tablaCandidatos.getModel();
+        modelo.setRowCount(0);
+
+        for (ClsCandidato c : candidatos) {
+            Object[] fila = {c.getNombre(), c.getPartido(), c.getMensajeCampania()};
+            modelo.addRow(fila);
+
+        }
+    }
+
+
+/**
+ * @param args the command line arguments
+ */
+public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -171,16 +213,28 @@ public class VistaGestorCandidato extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaGestorCandidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaGestorCandidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaGestorCandidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaGestorCandidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaGestorCandidato.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(VistaGestorCandidato.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(VistaGestorCandidato.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(VistaGestorCandidato.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -202,6 +256,8 @@ public class VistaGestorCandidato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable tablaCandidatos;
     // End of variables declaration//GEN-END:variables
 }
