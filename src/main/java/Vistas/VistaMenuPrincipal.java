@@ -58,6 +58,11 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jButton4.setText("Votar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,6 +111,10 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         this.setVisible(false);
         this.vistaCandidato.setVisible(true);
     }//GEN-LAST:event_botonCrearCandidatoActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
