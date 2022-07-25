@@ -2,6 +2,7 @@ package Modelos;
 
 import Clases.ClsCandidato;
 import Clases.ClsJdbc;
+import Clases.ClsMensaje;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedList;
@@ -42,7 +43,8 @@ public class MdlCandidato {
                 String ciudadOrigen = resultados.getString("nombre");
 
                 ClsCandidato candidato = new ClsCandidato(partido, campania,
-                        cedula, nombre, nombre, nombre, nombre, nombre, nombre);
+                        descripcion, cedula, nombre, correo, telefono,
+                        ciudadOrigen, direccion);
                 lista.add(candidato);
             }
             return lista;
@@ -52,7 +54,8 @@ public class MdlCandidato {
 
     }
 
-    public boolean agregarCandidato(ClsCandidato candidato) {
+    public ClsMensaje agregarCandidato(ClsCandidato candidato) {
+        ClsMensaje mensaje;
 
         try {
             String sql = "INSERT INTO tbl_candidatos VALUES (?,?,?,?,?,?,?,?,?)";
@@ -69,13 +72,42 @@ public class MdlCandidato {
 
             int resultado = sentencia.executeUpdate();
 
-            return resultado >= 1;
+            if (resultado >= 1) {
+                mensaje = new ClsMensaje(ClsMensaje.OK, "Has creado un candidato exitosamente");
+                return mensaje;
+            }
+            mensaje = new ClsMensaje(ClsMensaje.ERROR, "Ha ocurrido un error");
+            return mensaje;
 
-        } catch (Exception e) {
-            return false;
+        } catch (Exception excepcion) {
+            mensaje = new ClsMensaje(ClsMensaje.ERROR, "Ha ocurrido un error" + excepcion.getMessage());
+            return mensaje;
         }
 
-        
+    }
+
+    public ClsMensaje eliminarCandidato(String id) {
+        ClsMensaje mensaje;
+
+        try {
+            String sql = "DELETE FROM tbl_candidatos WHERE id_candidato=?";
+            PreparedStatement sentencia = this.jdbc.conexion.prepareStatement(sql);
+            sentencia.setString(1, id);
+
+            int resultado = sentencia.executeUpdate();
+
+            if (resultado >= 1) {
+                mensaje = new ClsMensaje(ClsMensaje.OK, "Has eliminado un candidato exitosamente");
+                return mensaje;
+            }
+            mensaje = new ClsMensaje(ClsMensaje.ERROR, "Ha ocurrido un error");
+            return mensaje;
+
+        } catch (Exception excepcion) {
+            mensaje = new ClsMensaje(ClsMensaje.ERROR, "Ha ocurrido un error" + excepcion.getMessage());
+            return mensaje;
+        }
+
     }
 
 }

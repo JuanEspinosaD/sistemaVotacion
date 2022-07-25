@@ -1,5 +1,6 @@
 package Controladores;
 import Clases.ClsCandidato;
+import Clases.ClsMensaje;
 import Modelos.MdlCandidato;
 import java.util.LinkedList;
 
@@ -23,11 +24,18 @@ public class CtlCandidato {
         return listaCandidatos;
     }
 
-    public Boolean agregarCandidato(ClsCandidato candidato) {
+    public ClsMensaje agregarCandidato(ClsCandidato candidato) {
 
-        boolean respuesta = this.modeloCandidato.agregarCandidato(candidato);
+        ClsMensaje mensaje = this.modeloCandidato.agregarCandidato(candidato);
       
-        return true;
+        return mensaje;
+    }
+    
+    public ClsMensaje eliminarCandidato(String id){
+        
+        ClsMensaje mensaje = this.modeloCandidato.eliminarCandidato(id);
+      
+        return mensaje;
     }
 
 }
