@@ -37,5 +37,12 @@ public class CtlCandidato {
       
         return mensaje;
     }
+    
+     public ClsMensaje actualizarCandidato(ClsCandidato candidato) {
+
+        ClsMensaje mensaje = this.modeloCandidato.actualizarCandidato(candidato);
+      
+        return mensaje;
+    }
 
 }

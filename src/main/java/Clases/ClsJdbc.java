@@ -2,6 +2,7 @@ package Clases;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +26,7 @@ public class ClsJdbc {
           
           if(this.conexion !=null){
               System.out.println("Conexión exitosa");
+              
           }
         }catch(Exception error){
             System.out.println("Ocurrio un error al conectar: "+error.getMessage());
