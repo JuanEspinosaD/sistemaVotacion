@@ -8,6 +8,7 @@ import Controladores.CtlEleccion;
 import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,11 +22,12 @@ public class VistaGestorElecciones extends javax.swing.JFrame {
     LinkedList<ClsEleccion> listaElecciones;
     CtlCandidato controladorCandidato;
     LinkedList<ClsCandidato> listaCandidatos;
+    JFrame menuPrincipal;
 
     /**
      * Creates new form VistaGestorElecciones
      */
-    public VistaGestorElecciones() {
+    public VistaGestorElecciones(JFrame menuPrincipal) {
         initComponents();
         this.controlador = new CtlEleccion();
         this.listaElecciones = new LinkedList<>();
@@ -33,6 +35,7 @@ public class VistaGestorElecciones extends javax.swing.JFrame {
         this.obtenerElecciones();
         this.controladorCandidato = new CtlCandidato();
         this.obtenerCandidatos();
+        this.menuPrincipal = menuPrincipal;
 
     }
 
@@ -147,7 +150,12 @@ public class VistaGestorElecciones extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jLabel4.setText("Fecha fin");
 
-        botonVolver.setText("Volver");
+        botonVolver.setText("Volver al menú principal");
+        botonVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVolverActionPerformed(evt);
+            }
+        });
 
         botonActualizar.setText("Actualizar");
 
@@ -192,17 +200,14 @@ public class VistaGestorElecciones extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(campoFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(74, 74, 74))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(168, 168, 168)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(campoFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(230, 230, 230))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(324, 324, 324)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(campoFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,8 +215,11 @@ public class VistaGestorElecciones extends javax.swing.JFrame {
                                 .addGap(74, 74, 74)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(botonActualizar)
-                                    .addComponent(botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(156, 156, 156))
+                                    .addComponent(botonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(156, 156, 156))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(botonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(59, 59, 59))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel7)
@@ -241,7 +249,9 @@ public class VistaGestorElecciones extends javax.swing.JFrame {
                                     .addComponent(jLabel3)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
-                                .addComponent(jLabel1)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(botonVolver))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -257,9 +267,7 @@ public class VistaGestorElecciones extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(campoFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(botonVolver)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(141, 141, 141)
                         .addComponent(botonAgregar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonActualizar)
@@ -334,6 +342,11 @@ public class VistaGestorElecciones extends javax.swing.JFrame {
         String idEleccion = this.tablaElecciones1.getValueAt(fila, columna).toString();
         this.obtenerCandidatosPorEleccion(idEleccion);
     }//GEN-LAST:event_tablaElecciones1MouseClicked
+
+    private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
+        this.setVisible(false);
+        this.menuPrincipal.setVisible(true);
+    }//GEN-LAST:event_botonVolverActionPerformed
 
     private void obtenerCandidatosPorEleccion(String idEleccion) {
 
@@ -433,7 +446,7 @@ public class VistaGestorElecciones extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaGestorElecciones().setVisible(true);
+                new VistaGestorElecciones(null).setVisible(true);
             }
         });
     }

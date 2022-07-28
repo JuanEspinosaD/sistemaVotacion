@@ -8,6 +8,8 @@ package Vistas;
 public class VistaMenuPrincipal extends javax.swing.JFrame {
 
     VistaGestorCandidato vistaCandidato;
+    VistaGestorVotante vistaVotante;
+    VistaGestorElecciones vistaEleccion;
 
     /**
      * Creates new form VistaMenuPrincipal
@@ -15,6 +17,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     public VistaMenuPrincipal() {
         initComponents();
         this.vistaCandidato = new VistaGestorCandidato(this);
+        this.vistaVotante = new VistaGestorVotante(this);
+        this.vistaEleccion = new VistaGestorElecciones(this);
     }
 
     /**
@@ -27,8 +31,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        botonCrearVotante = new javax.swing.JButton();
+        botonCrearEleccion = new javax.swing.JButton();
         botonCrearCandidato = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -40,14 +44,19 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Sistema de elecciones");
 
-        jButton1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jButton1.setText("Gestionar votante");
-
-        jButton2.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jButton2.setText("Gestionar elección");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botonCrearVotante.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        botonCrearVotante.setText("Gestionar votante");
+        botonCrearVotante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botonCrearVotanteActionPerformed(evt);
+            }
+        });
+
+        botonCrearEleccion.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        botonCrearEleccion.setText("Gestionar elección");
+        botonCrearEleccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCrearEleccionActionPerformed(evt);
             }
         });
 
@@ -84,9 +93,9 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonCrearEleccion, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonCrearCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonCrearVotante, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -103,22 +112,23 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(botonCrearVotante, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonCrearCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonCrearEleccion, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(107, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void botonCrearEleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearEleccionActionPerformed
+this.setVisible(false);
+        this.vistaEleccion.setVisible(true);
+    }//GEN-LAST:event_botonCrearEleccionActionPerformed
 
     private void botonCrearCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearCandidatoActionPerformed
         this.setVisible(false);
@@ -128,6 +138,11 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void botonCrearVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearVotanteActionPerformed
+        this.setVisible(false);
+        this.vistaVotante.setVisible(true);
+    }//GEN-LAST:event_botonCrearVotanteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,8 +181,8 @@ public class VistaMenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCrearCandidato;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton botonCrearEleccion;
+    private javax.swing.JButton botonCrearVotante;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
