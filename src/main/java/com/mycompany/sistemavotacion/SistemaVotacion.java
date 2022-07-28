@@ -2,6 +2,7 @@
 package com.mycompany.sistemavotacion;
 
 import Clases.ClsJdbc;
+import Vistas.VistaMenuPrincipal;
 
 /**
  *
@@ -10,11 +11,10 @@ import Clases.ClsJdbc;
 public class SistemaVotacion {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        
-        /*
-        ClsJdbc jdbc=new ClsJdbc();
-        jdbc.CrearConexion();
-*/
+         VistaMenuPrincipal menu = new VistaMenuPrincipal();
+         menu.setLocationRelativeTo(null);
+         menu.setVisible(true);
+                 
+         
     }
 }
